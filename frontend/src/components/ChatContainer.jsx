@@ -38,6 +38,12 @@ const ChatContainer = () => {
     }
   }, [messages]);
   
+  const handleImageLoad = () => {
+    if (messageEndRef.current) {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   if (isMessagesLoading) {
     return (
       <div className="flex-1 flex flex-col overflow-auto">
@@ -84,6 +90,7 @@ const ChatContainer = () => {
                   src={message.image}
                   alt="Attachment"
                   className="sm:max-w-[200px] rounded-md mb-2"
+                  onLoad={handleImageLoad}
                 />
               )}
               {message.text && <p>{message.text}</p>}
